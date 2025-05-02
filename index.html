@@ -19,78 +19,34 @@
       min-height: 100vh;
     }
 
-    #game {
-      width: 95%;
-      max-width: 860px;
-      padding: 20px;
-    }
+    #game { width: 95%; max-width: 860px; padding: 20px; }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #00adee;
-    }
-
-    #round {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
+    h1 { text-align: center; margin-bottom: 20px; color: #00adee; }
+    #round { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
 
     #screenshot {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      border: 2px solid #333;
-      margin-bottom: 15px;
-      background: #222;
+      width: 100%; height: auto; border-radius: 8px; border: 2px solid #333;
+      margin-bottom: 15px; background: #222;
     }
 
-    form label {
-      display: block;
-      margin-top: 10px;
-      font-weight: 600;
-    }
+    form label { display: block; margin-top: 10px; font-weight: 600; }
 
     input[list] {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 4px;
-      border: 1px solid #555;
-      background: #1b1b1b;
-      color: #eee;
-      font-size: 0.95rem;
+      width: 100%; padding: 8px 10px; border-radius: 4px; border: 1px solid #555;
+      background: #1b1b1b; color: #eee; font-size: 0.95rem;
     }
 
     button {
-      margin-top: 18px;
-      padding: 10px 22px;
-      border: none;
-      border-radius: 4px;
-      background: #00adee;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
+      margin-top: 18px; padding: 10px 22px; border: none; border-radius: 4px;
+      background: #00adee; color: #fff; font-size: 1rem; cursor: pointer;
       transition: opacity 0.25s;
     }
     button:hover { opacity: 0.85; }
 
-    #feedback {
-      margin-top: 15px;
-      font-size: 1.05rem;
-    }
+    #feedback { margin-top: 15px; font-size: 1.05rem; }
+    #score    { margin-top: 15px; font-size: 1.35rem; font-weight: 700; color: #ffd54f; text-align: center; }
 
-    #score {
-      margin-top: 15px;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #ffd54f;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 1.4rem; }
-    }
+    @media (max-width: 600px) { h1 { font-size: 1.4rem; } }
   </style>
 </head>
 <body>
@@ -98,90 +54,48 @@
     <h1>Dota 2 Historical Match Guess Game</h1>
 
     <div id="round"></div>
-
-    <!-- Screenshots live inside the images/ folder -->
-    <img
-      id="screenshot"
-      src="images/pic1.png"
-      alt="Match screenshot placeholder"
-    />
+    <img id="screenshot" src="images/pic1.png" alt="Match screenshot" />
 
     <form id="guess-form" autocomplete="off">
-      <label
-        >Team 1:
-        <input
-          id="team1"
-          list="teams"
-          placeholder="Start typing a team…"
-          required
-      /></label>
-      <label
-        >Team 2:
-        <input
-          id="team2"
-          list="teams"
-          placeholder="Start typing a team…"
-          required
-      /></label>
+      <label>Team 1:
+        <input id="team1" list="teams" placeholder="Start typing a team…" required />
+      </label>
+      <label>Team 2:
+        <input id="team2" list="teams" placeholder="Start typing a team…" required />
+      </label>
 
       <datalist id="teams">
-        <option value="Evil Geniuses"></option>
-        <option value="EG"></option>
+        <option value="Evil Geniuses"></option><option value="EG"></option>
         <option value="OG"></option>
         <option value="Alliance"></option>
-        <option value="NaVi"></option>
-        <option value="Natus Vincere"></option>
+        <option value="NaVi"></option><option value="Natus Vincere"></option>
         <option value="Ad Finem"></option>
-        <option value="Team Liquid"></option>
-        <option value="Liquid"></option>
-        <option value="PSG.LGD"></option>
-        <option value="LGD"></option>
-        <option value="Team Secret"></option>
-        <option value="Secret"></option>
+        <option value="Team Liquid"></option><option value="Liquid"></option>
+        <option value="PSG.LGD"></option><option value="LGD"></option>
+        <option value="Team Secret"></option><option value="Secret"></option>
       </datalist>
 
-      <label
-        >Tournament:
-        <input
-          id="tournament"
-          list="tournaments"
-          placeholder="e.g. TI3 or The International 2013"
-          required
-      /></label>
+      <label>Tournament:
+        <input id="tournament" list="tournaments" placeholder="e.g. TI3 or The International 3" required />
+      </label>
 
-      <!-- Tournament suggestions -->
       <datalist id="tournaments">
-        <!-- The Internationals 1‑14 with shorthand TIX values -->
-        <option value="The International"></option>
-        <option value="TI"></option>
-        <option value="The International 1"></option>
-        <option value="TI1"></option>
-        <option value="The International 2"></option>
-        <option value="TI2"></option>
-        <option value="The International 3"></option>
-        <option value="TI3"></option>
-        <option value="The International 4"></option>
-        <option value="TI4"></option>
-        <option value="The International 5"></option>
-        <option value="TI5"></option>
-        <option value="The International 6"></option>
-        <option value="TI6"></option>
-        <option value="The International 7"></option>
-        <option value="TI7"></option>
-        <option value="The International 8"></option>
-        <option value="TI8"></option>
-        <option value="The International 9"></option>
-        <option value="TI9"></option>
-        <option value="The International 10"></option>
-        <option value="TI10"></option>
-        <option value="The International 11"></option>
-        <option value="TI11"></option>
-        <option value="The International 12"></option>
-        <option value="TI12"></option>
-        <option value="The International 13"></option>
-        <option value="TI13"></option>
-        <option value="The International 14"></option>
-        <option value="TI14"></option>
+        <!-- The International 1‑14, plus shorthand TI# that displays as label -->
+        <!-- We include both values so typing 'TI3' matches, but only the full name shows in UI -->
+        <option value="The International 1"></option><option value="TI1"  label="The International 1"></option>
+        <option value="The International 2"></option><option value="TI2"  label="The International 2"></option>
+        <option value="The International 3"></option><option value="TI3"  label="The International 3"></option>
+        <option value="The International 4"></option><option value="TI4"  label="The International 4"></option>
+        <option value="The International 5"></option><option value="TI5"  label="The International 5"></option>
+        <option value="The International 6"></option><option value="TI6"  label="The International 6"></option>
+        <option value="The International 7"></option><option value="TI7"  label="The International 7"></option>
+        <option value="The International 8"></option><option value="TI8"  label="The International 8"></option>
+        <option value="The International 9"></option><option value="TI9"  label="The International 9"></option>
+        <option value="The International 10"></option><option value="TI10" label="The International 10"></option>
+        <option value="The International 11"></option><option value="TI11" label="The International 11"></option>
+        <option value="The International 12"></option><option value="TI12" label="The International 12"></option>
+        <option value="The International 13"></option><option value="TI13" label="The International 13"></option>
+        <option value="The International 14"></option><option value="TI14" label="The International 14"></option>
         <!-- Majors -->
         <option value="The Boston Major 2016"></option>
         <option value="The Manila Major 2016"></option>
@@ -189,7 +103,7 @@
       </datalist>
 
       <button type="submit" id="submitBtn">Submit Guess</button>
-      <button type="button" id="nextBtn" style="display: none">Next Round</button>
+      <button type="button" id="nextBtn" style="display:none;">Next Round</button>
     </form>
 
     <div id="feedback"></div>
@@ -197,39 +111,16 @@
   </div>
 
   <script>
-    /* ------------------------------------------------------------------
-       Setup: rounds + canonicalisation helpers
-    ------------------------------------------------------------------ */
-
+    /* ---------------- Round data ---------------- */
     const rounds = [
-      {
-        img: "images/pic1.png",
-        teams: ["alliance", "navi"],
-        tournament: "the international 2013",
-      },
-      {
-        img: "https://via.placeholder.com/800x450?text=Screenshot+2",
-        teams: ["evil geniuses", "team secret"],
-        tournament: "the international 2015",
-      },
-      {
-        img: "https://via.placeholder.com/800x450?text=Screenshot+3",
-        teams: ["psg.lgd", "team liquid"],
-        tournament: "epicenter xl 2018",
-      },
-      {
-        img: "https://via.placeholder.com/800x450?text=Screenshot+4",
-        teams: ["navi", "alliance"],
-        tournament: "the international 2013",
-      },
-      {
-        img: "https://via.placeholder.com/800x450?text=Screenshot+5",
-        teams: ["og", "evil geniuses"],
-        tournament: "the international 2018",
-      },
+      { img: "images/pic1.png", teams: ["alliance", "navi"], tournament: "the international 2013" },
+      { img: "https://via.placeholder.com/800x450?text=Screenshot+2", teams: ["evil geniuses", "team secret"], tournament: "the international 2015" },
+      { img: "https://via.placeholder.com/800x450?text=Screenshot+3", teams: ["psg.lgd", "team liquid"], tournament: "epicenter xl 2018" },
+      { img: "https://via.placeholder.com/800x450?text=Screenshot+4", teams: ["navi", "alliance"], tournament: "the international 2013" },
+      { img: "https://via.placeholder.com/800x450?text=Screenshot+5", teams: ["og", "evil geniuses"], tournament: "the international 2018" }
     ];
 
-    // ---------- Team synonyms
+    /* ---------------- Canonical dictionaries ---------------- */
     const teamCanon = {
       "evil geniuses": ["evil geniuses", "eg"],
       og: ["og"],
@@ -238,145 +129,39 @@
       "ad finem": ["ad finem"],
       "team liquid": ["team liquid", "liquid"],
       "psg.lgd": ["psg.lgd", "lgd", "lgd gaming"],
-      "team secret": ["team secret", "secret"],
+      "team secret": ["team secret", "secret"]
     };
+    function canonicalizeTeam(str){const s=str.trim().toLowerCase();for(const [k,vals] of Object.entries(teamCanon)){if(vals.includes(s))return k;}return s;}
 
-    function canonicalizeTeam(input) {
-      const txt = input.trim().toLowerCase();
-      for (const [canon, vars] of Object.entries(teamCanon)) {
-        if (vars.includes(txt)) return canon;
-      }
-      return txt;
-    }
+    const tourCanon={};// build TI1‑14
+    for(let i=1;i<=14;i++){const canon=`the international ${i}`;tourCanon[canon]=[canon,`ti${i}`,`ti ${i}`];}
+    tourCanon["the boston major 2016"]=["the boston major 2016","boston major 2016","boston major"];
+    tourCanon["the manila major 2016"]=["the manila major 2016","manila major 2016","manila major"];
+    tourCanon["the animajor 2021"]=["the animajor 2021","animajor 2021","animajor"];
+    function canonicalizeTournament(str){const s=str.trim().toLowerCase();for(const [k,vals] of Object.entries(tourCanon)){if(vals.includes(s))return k;}return s;}
 
-    // ---------- Tournament synonyms (build programmatically for TIs)
-    const tourCanon = {};
-    // TI1‑14
-    for (let i = 1; i <= 14; i++) {
-      const canon = `the international ${i}`;
-      tourCanon[canon] = [canon, `ti${i}`, `ti ${i}`];
-    }
-    // Generic TI (no year)
-    tourCanon["the international"] = ["the international", "ti"];
+    /* ---------------- DOM refs ---------------- */
+    const roundElem=document.getElementById("round");
+    const imgElem=document.getElementById("screenshot");
+    const formElem=document.getElementById("guess-form");
+    const team1Input=document.getElementById("team1");
+    const team2Input=document.getElementById("team2");
+    const tourInput=document.getElementById("tournament");
+    const feedback=document.getElementById("feedback");
+    const score=document.getElementById("score");
+    const nextBtn=document.getElementById("nextBtn");
+    const submitBtn=document.getElementById("submitBtn");
 
-    // Majors
-    tourCanon["the boston major 2016"] = [
-      "the boston major 2016",
-      "boston major 2016",
-      "boston major",
-    ];
-    tourCanon["the manila major 2016"] = [
-      "the manila major 2016",
-      "manila major 2016",
-      "manila major",
-    ];
-    tourCanon["the animajor 2021"] = ["the animajor 2021", "animajor 2021", "animajor"];
+    /* ---------------- Game state ---------------- */
+    let current=0,total=0;
+    function loadRound(){const d=rounds[current];roundElem.textContent=`Round ${current+1} of ${rounds.length}`;imgElem.src=d.img;imgElem.alt=`Screenshot round ${current+1}`;feedback.textContent="";formElem.reset();team1Input.focus();submitBtn.style.display="inline-block";nextBtn.style.display="none";}
 
-    function canonicalizeTournament(input) {
-      const txt = input.trim().toLowerCase();
-      for (const [canon, vars] of Object.entries(tourCanon)) {
-        if (vars.includes(txt)) return canon;
-      }
-      return txt; // Return as‑is if unrecognised
-    }
+    function evaluate(e){e.preventDefault();const gTeams=[canonicalizeTeam(team1Input.value),canonicalizeTeam(team2Input.value)],aTeams=rounds[current].teams.map(canonicalizeTeam);const gTour=canonicalizeTournament(tourInput.value),aTour=canonicalizeTournament(rounds[current].tournament);let pts=0;const correct=gTeams.filter(t=>aTeams.includes(t));if(correct.length===1)pts+=1;else if(correct.length===2)pts+=2;if(gTour===aTour)pts+=2;total+=pts;feedback.innerHTML=`<p>You scored <strong>${pts}</strong> point${pts!==1?"s":""} this round.</p><p>Correct answer: <span style='color:#ffd54f;'>${aTeams[0].toUpperCase()} vs ${aTeams[1].toUpperCase()}</span> – ${rounds[current].tournament}</p>`;submitBtn.style.display="none";nextBtn.style.display="inline-block";current++;nextBtn.textContent=current>=rounds.length?"Show Final Score":"Next Round";}
 
-    /* ------------------------------------------------------------------
-       DOM references
-    ------------------------------------------------------------------ */
-    const roundElem = document.getElementById("round");
-    const imgElem = document.getElementById("screenshot");
-    const formElem = document.getElementById("guess-form");
-    const team1Input = document.getElementById("team1");
-    const team2Input = document.getElementById("team2");
-    const tournamentInput = document.getElementById("tournament");
-    const feedbackElem = document.getElementById("feedback");
-    const scoreElem = document.getElementById("score");
-    const nextBtn = document.getElementById("nextBtn");
-    const submitBtn = document.getElementById("submitBtn");
+    function next(){if(current>=rounds.length){roundElem.textContent="Game Over";imgElem.style.display="none";formElem.style.display="none";feedback.style.display="none";score.textContent=`Your final score: ${total} / ${rounds.length*4}`;nextBtn.style.display="none";}else{loadRound();}}
 
-    /* ------------------------------------------------------------------
-       State vars & helpers
-    ------------------------------------------------------------------ */
-    let currentRound = 0;
-    let totalScore = 0;
-
-    function loadRound() {
-      const data = rounds[currentRound];
-      roundElem.textContent = `Round ${currentRound + 1} of ${rounds.length}`;
-      imgElem.src = data.img;
-      imgElem.alt = `Screenshot for round ${currentRound + 1}`;
-      feedbackElem.textContent = "";
-      formElem.reset();
-      team1Input.focus();
-      submitBtn.style.display = "inline-block";
-      nextBtn.style.display = "none";
-    }
-
-    function evaluateGuess(e) {
-      e.preventDefault();
-
-      // ---- Teams
-      const guessTeams = [
-        canonicalizeTeam(team1Input.value),
-        canonicalizeTeam(team2Input.value),
-      ];
-      const answerTeams = rounds[currentRound].teams.map(canonicalizeTeam);
-
-      // ---- Tournament
-      const guessTournament = canonicalizeTournament(tournamentInput.value);
-      const answerTournament = canonicalizeTournament(
-        rounds[currentRound].tournament
-      );
-
-      // ---- Scoring
-      let roundScore = 0;
-      const correctTeams = guessTeams.filter((t) => answerTeams.includes(t));
-      if (correctTeams.length === 1) roundScore += 1;
-      if (correctTeams.length === 2) roundScore += 2;
-      if (guessTournament === answerTournament) roundScore += 2;
-
-      totalScore += roundScore;
-
-      // ---- Feedback
-      feedbackElem.innerHTML =
-        `<p>You scored <strong>${roundScore}</strong> point${
-        roundScore !== 1 ? "s" : ""
-      } this round.</p>` +
-        `<p>Correct answer: <span style="color:#ffd54f;">${
-          answerTeams[0].toUpperCase()
-        } vs ${answerTeams[1].toUpperCase()}</span> – ${
-          rounds[currentRound].tournament
-        }</p>`;
-
-      // ---- Next action setup
-      submitBtn.style.display = "none";
-      nextBtn.style.display = "inline-block";
-      currentRound++;
-      nextBtn.textContent =
-        currentRound >= rounds.length ? "Show Final Score" : "Next Round";
-    }
-
-    function nextAction() {
-      if (currentRound >= rounds.length) {
-        roundElem.textContent = "Game Over";
-        imgElem.style.display = "none";
-        formElem.style.display = "none";
-        feedbackElem.style.display = "none";
-        scoreElem.textContent = `Your final score: ${totalScore} / ${
-        rounds.length * 4
-      }`;
-        nextBtn.style.display = "none";
-      } else {
-        loadRound();
-      }
-    }
-
-    /* ------------------------------------------------------------------
-       Wire up events & start
-    ------------------------------------------------------------------ */
-    formElem.addEventListener("submit", evaluateGuess);
-    nextBtn.addEventListener("click", nextAction);
-    loadRound();
+    /* ---------------- Start ---------------- */
+    formElem.addEventListener("submit",evaluate);nextBtn.addEventListener("click",next);loadRound();
   </script>
 </body>
 </html>
