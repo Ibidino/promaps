@@ -99,8 +99,8 @@
 
     <div id="round"></div>
 
-    <!-- Placeholder image until the user supplies real screenshots -->
-    <img id="screenshot" src="https://via.placeholder.com/800x450?text=Screenshot+1" alt="Match screenshot placeholder" />
+    <!-- First screenshot will load from images/pic1.png. Put all future images inside the images/ folder -->
+    <img id="screenshot" src="images/pic1.png" alt="Match screenshot placeholder" />
 
     <form id="guess-form" autocomplete="off">
       <label>Team 1:
@@ -140,71 +140,71 @@
 
   <script>
     /* ---------------------------------------------
-       Core game data – swap placeholders later
+       Core game data – update paths to images/ as you add real screenshots
     --------------------------------------------- */
 
     const rounds = [
       {
-        img: "https://via.placeholder.com/800x450?text=Screenshot+1",
-        teams: ["og", "ad finem"],
-        tournament: "the boston major 2016"
+        img: "images/pic1.png", // Round 1 real screenshot
+        teams: ["alliance", "navi"],
+        tournament: "the international 2013"
       },
       {
         img: "https://via.placeholder.com/800x450?text=Screenshot+2",
-        teams: ["evil geniuses", "team secret"],
-        tournament: "the international 2015"
+        teams: ["evil geniuses", "team secret"],
+        tournament: "the international 2015"
       },
       {
         img: "https://via.placeholder.com/800x450?text=Screenshot+3",
-        teams: ["psg.lgd", "team liquid"],
-        tournament: "epicenter xl 2018"
+        teams: ["psg.lgd", "team liquid"],
+        tournament: "epicenter xl 2018"
       },
       {
         img: "https://via.placeholder.com/800x450?text=Screenshot+4",
         teams: ["navi", "alliance"],
-        tournament: "the international 2013"
+        tournament: "the international 2013"
       },
       {
         img: "https://via.placeholder.com/800x450?text=Screenshot+5",
-        teams: ["og", "evil geniuses"],
-        tournament: "the international 2018"
+        teams: ["og", "evil geniuses"],
+        tournament: "the international 2018"
       }
     ];
 
-    // Synonyms map so inputs like "EG" count as Evil Geniuses, etc.
+    // Synonyms map: add more aliases if needed
     const teamCanon = {
-      "evil geniuses": ["evil geniuses", "eg"],
+      "evil geniuses": ["evil geniuses", "eg"],
       "og": ["og"],
       "alliance": ["alliance"],
-      "navi": ["navi", "natus vincere"],
-      "ad finem": ["ad finem"],
-      "team liquid": ["team liquid", "liquid"],
-      "psg.lgd": ["psg.lgd", "lgd", "lgd gaming"],
-      "team secret": ["team secret", "secret"]
+      "navi": ["navi", "natus vincere"],
+      "ad finem": ["ad finem"],
+      "team liquid": ["team liquid", "liquid"],
+      "psg.lgd": ["psg.lgd", "lgd", "lgd gaming"],
+      "team secret": ["team secret", "secret"]
     };
 
     function canonicalizeTeam(input) {
       const txt = input.trim().toLowerCase();
       for (const [canon, vars] of Object.entries(teamCanon)) {
-        if (vars.includes(txt)) return canon; // return canonical name
+        if (vars.includes(txt)) return canon; // canonical name
       }
-      return txt; // unknown team – return as‑is to allow partial matches later if desired
+      return txt; // return original if not found
     }
 
     // State
     let currentRound = 0;
     let totalScore = 0;
 
-    const roundElem     = document.getElementById("round");
-    const imgElem       = document.getElementById("screenshot");
-    const formElem      = document.getElementById("guess-form");
-    const team1Input    = document.getElementById("team1");
-    const team2Input    = document.getElementById("team2");
+    const roundElem       = document.getElementById("round");
+    const imgElem         = document.getElementById("screenshot");
+    const formElem        = document.getElementById("guess-form");
+    const team1Input      = document.getElementById("team1");
+    const team2Input      = document.getElementById("team2");
     const tournamentInput = document.getElementById("tournament");
-    const feedbackElem  = document.getElementById("feedback");
-    const scoreElem     = document.getElementById("score");
-    const nextBtn       = document.getElementById("nextBtn");
-    const submitBtn     = document.getElementById("submitBtn");
+    const feedbackElem    = document.getElementById("feedback");
+    const scoreElem       = document.getElementById("score");
+    const nextBtn         = document.getElementById("nextBtn");
+    const submitBtn       = document.getElementById("submitBtn");
 
     function loadRound() {
       const data = rounds[currentRound];
@@ -221,45 +221,38 @@
     function evaluateGuess(e) {
       e.preventDefault();
 
-      // -------------- Prepare guesses --------------
+      // Collect guesses
       const guessTeams = [canonicalizeTeam(team1Input.value), canonicalizeTeam(team2Input.value)];
       const answerTeams = rounds[currentRound].teams.map(canonicalizeTeam);
 
       const guessTournament = tournamentInput.value.trim().toLowerCase();
       const answerTournament = rounds[currentRound].tournament.toLowerCase();
 
-      // -------------- Scoring logic --------------
+      // Scoring
       let roundScore = 0;
-
       const correctTeams = guessTeams.filter(t => answerTeams.includes(t));
       if (correctTeams.length === 1) roundScore += 1;
-      if (correctTeams.length === 2) roundScore += 2; // overrides – counts as both correct teams
-
+      if (correctTeams.length === 2) roundScore += 2;
       if (guessTournament === answerTournament) roundScore += 2;
 
       totalScore += roundScore;
 
-      // -------------- Feedback --------------
+      // Feedback
       feedbackElem.innerHTML =
         `<p>You scored <strong>${roundScore}</strong> point${roundScore !== 1 ? 's' : ''} this round.</p>` +
         `<p>Correct answer: <span style="color:#ffd54f;">${answerTeams[0].toUpperCase()} vs ${answerTeams[1].toUpperCase()}</span> – ${rounds[currentRound].tournament}</p>`;
 
-      // -------------- Prepare next --------------
+      // Setup next
       submitBtn.style.display = "none";
       nextBtn.style.display = "inline-block";
 
       currentRound++;
-
-      if (currentRound >= rounds.length) {
-        nextBtn.textContent = "Show Final Score";
-      } else {
-        nextBtn.textContent = "Next Round";
-      }
+      nextBtn.textContent = currentRound >= rounds.length ? "Show Final Score" : "Next Round";
     }
 
     function nextAction() {
       if (currentRound >= rounds.length) {
-        // Game over
+        // End of game
         roundElem.textContent = "Game Over";
         imgElem.style.display = "none";
         formElem.style.display = "none";
@@ -271,11 +264,11 @@
       }
     }
 
-    // ---------- Event wiring ----------
+    // Event listeners
     formElem.addEventListener("submit", evaluateGuess);
     nextBtn.addEventListener("click", nextAction);
 
-    // ---------- Kick off ----------
+    // Start game
     loadRound();
   </script>
 </body>
